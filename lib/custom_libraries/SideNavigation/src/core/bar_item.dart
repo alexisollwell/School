@@ -56,67 +56,65 @@ class _SideNavigationBarItemWidgetState
       message: widget.itemData.label,
       child: widget.expanded
           ? isSelected
-            ? InkWell(
-              onTap: ()=>widget.onTap(widget.index),
-              child: Container(
-                margin: const EdgeInsets.only(top: 5),
-                color: Colors.white,
-                child: ListTile(
-                  leading: Icon(
-                    widget.itemData.icon,
-                    color: const Color(0xFF1F3452),
-                    size: widget.itemTheme.iconSize,
+              ? InkWell(
+                  onTap: () => widget.onTap(widget.index),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    color: Colors.orange,
+                    child: ListTile(
+                        leading: Icon(
+                          widget.itemData.icon,
+                          color: Colors.white,
+                          size: widget.itemTheme.iconSize,
+                        ),
+                        title: Text(
+                          widget.itemData.label,
+                          style: _evaluateTextStyle(Colors.white),
+                        )),
                   ),
-                  title: Text(
-                    widget.itemData.label,
-                    style: _evaluateTextStyle(const Color(0xFF1F3452)),
-                  )
-                ),
-              ),
-            )
-            : InkWell(
-                onTap: ()=>widget.onTap(widget.index),
-                child: Container(
-                  margin: const EdgeInsets.only(top: 5),
-                  color: Colors.white.withOpacity(0.2),
-                  child: ListTile(
-                      leading: Icon(
-                        widget.itemData.icon,
-                        color: Colors.white,
-                        size: widget.itemTheme.iconSize,
-                      ),
-                      title: Text(
-                        widget.itemData.label,
-                        style: _evaluateTextStyle(Colors.white),
-                      )
+                )
+              : InkWell(
+                  onTap: () => widget.onTap(widget.index),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    color: Colors.white.withOpacity(0.2),
+                    child: ListTile(
+                        leading: Icon(
+                          widget.itemData.icon,
+                          color: Colors.grey,
+                          size: widget.itemTheme.iconSize,
+                        ),
+                        title: Text(
+                          widget.itemData.label,
+                          style: _evaluateTextStyle(Colors.grey),
+                        )),
                   ),
-                ),
-              )
+                )
           : isSelected
-            ? InkWell(
-              onTap: ()=>widget.onTap(widget.index),
-              child: Container(
-                margin: const EdgeInsets.only(top: 5),
-                color: Colors.white,
-                child: Icon(
-                  widget.itemData.icon,
-                  color: const Color(0xFF1F3452),
-                  size: widget.itemTheme.iconSize,
+              ? InkWell(
+                  onTap: () => widget.onTap(widget.index),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    color: Colors.orange,
+                    child: Icon(
+                      widget.itemData.icon,
+                      color: Colors.white,
+                      size: widget.itemTheme.iconSize,
+                    ),
+                  ),
+                )
+              : InkWell(
+                  onTap: () => widget.onTap(widget.index),
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 5),
+                    color: Colors.grey.withOpacity(0.2),
+                    child: Icon(
+                      widget.itemData.icon,
+                      color: Colors.grey,
+                      size: widget.itemTheme.iconSize,
+                    ),
+                  ),
                 ),
-              ),
-            )
-            : InkWell(
-              onTap: ()=>widget.onTap(widget.index),
-              child: Container(
-                margin: const EdgeInsets.only(top: 5),
-                color: Colors.white.withOpacity(0.2),
-                child: Icon(
-                  widget.itemData.icon,
-                  color: Colors.white,
-                  size: widget.itemTheme.iconSize,
-                ),
-              ),
-            ),
     );
   }
 
@@ -183,10 +181,7 @@ class _SideNavigationBarItemWidgetState
   TextStyle? _evaluateTextStyle(final Color? evaluatedColor) {
     // No custom styled passed via theme - using default empty theme with color
     if (widget.itemTheme.labelTextStyle == null) {
-      return TextStyle(
-        color: evaluatedColor,
-        fontWeight: FontWeight.bold
-      );
+      return TextStyle(color: evaluatedColor, fontWeight: FontWeight.bold);
     }
     // Return custom text style overridden with evaluated color
     return widget.itemTheme.labelTextStyle!.apply(color: evaluatedColor);

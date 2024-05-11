@@ -6,8 +6,10 @@ import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV5.dart';
 import '../../../../components/addDialogV9.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
 import '../../../../components/profileModal.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/PerfilModel.dart';
 import '../../../../models/PruebasModel.dart';
@@ -177,7 +179,7 @@ class _PerfilState extends State<Perfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<PerfilModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -197,49 +199,16 @@ class _PerfilState extends State<Perfil> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Perfiles",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
-                      InkWell(
+                      AddButtonDesign(
                         onTap: addMethod,
-                        child: Container(
-                          height: 40,
-                          width: 120,
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.add,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Agregar",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                       const SizedBox(
                         width: 15,
@@ -273,7 +242,7 @@ class _PerfilState extends State<Perfil> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -333,6 +302,8 @@ class _PerfilState extends State<Perfil> {
                                         rows: List<DataRow>.generate(
                                           listaPerfiles.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(listaPerfiles[index]
                                                   .nombre!)),

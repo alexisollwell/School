@@ -6,7 +6,9 @@ import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV1.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../models/CampusModel.dart';
 import '../../../../services/campusServices.dart';
 
@@ -136,7 +138,7 @@ class _CampusState extends State<Campus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[100],
         body: FutureBuilder<List<CampusModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -156,49 +158,16 @@ class _CampusState extends State<Campus> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Campus",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
-                      InkWell(
+                      AddButtonDesign(
                         onTap: addCampusMethod,
-                        child: Container(
-                          height: 40,
-                          width: 120,
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.add,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Agregar",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                       const SizedBox(
                         width: 15,
@@ -232,7 +201,7 @@ class _CampusState extends State<Campus> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -273,6 +242,8 @@ class _CampusState extends State<Campus> {
                                         rows: List<DataRow>.generate(
                                           campus.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(
                                                   Text(campus[index].nombre!)),

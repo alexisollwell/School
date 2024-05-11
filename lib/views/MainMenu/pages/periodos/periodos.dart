@@ -6,7 +6,9 @@ import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV4.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/PeriodoModel.dart';
 import '../campus/campus.dart';
@@ -126,7 +128,7 @@ class _PeriodosState extends State<Periodos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<PeriodoModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -146,50 +148,17 @@ class _PeriodosState extends State<Periodos> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Periodos",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
                       userType == 1
-                          ? InkWell(
+                          ? AddButtonDesign(
                               onTap: addMethod,
-                              child: Container(
-                                height: 40,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    color: Colors.blueAccent,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: const Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Icon(
-                                      Icons.add,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Agregar",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
                             )
                           : const SizedBox(
                               width: 1,
@@ -226,7 +195,7 @@ class _PeriodosState extends State<Periodos> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -309,6 +278,8 @@ class _PeriodosState extends State<Periodos> {
                                         rows: List<DataRow>.generate(
                                           listaPeriodos.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(listaPeriodos[index]
                                                   .nombre!)),

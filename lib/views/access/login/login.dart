@@ -25,9 +25,9 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     user = TextEditingController();
-    //user.text = "Leonel@test.com";
+    user.text = "Leonel@test.com";
     password = TextEditingController();
-    //password.text = "Carlosx94*";
+    password.text = "Carlosx94*";
   }
 
   void makeLogin() async {

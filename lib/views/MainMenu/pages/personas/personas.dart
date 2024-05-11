@@ -9,7 +9,9 @@ import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV7.dart';
 import '../../../../components/addDialogV8.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/user/PersonaModel.dart';
 import '../../../../models/user/UserRegisterRequest.dart';
@@ -24,7 +26,7 @@ class Personas extends StatefulWidget {
 class _PersonasState extends State<Personas> {
   int _sortColumnIndex = 0;
   bool _sortAscending = true;
-  List<String> type= [];
+  List<String> type = [];
 
   void refreshData() async {
     setState(() {
@@ -73,8 +75,8 @@ class _PersonasState extends State<Personas> {
       data: data,
       title: 'Actualiza Usuario',
       action: (PersonaModel data, UpdatePassword pss) async {
-        if(pss.password.isNotEmpty){
-          await updatePersonaPassword(data:data,pss: pss);
+        if (pss.password.isNotEmpty) {
+          await updatePersonaPassword(data: data, pss: pss);
         }
         PersonaModel response = await updatePersona(data: data);
         if (response.id <= 0) {
@@ -115,7 +117,7 @@ class _PersonasState extends State<Personas> {
   void addMethod() {
     addDialogV7(
         context: context,
-        typeUserL:userType==1?typeUsers:["Evaluado"],
+        typeUserL: userType == 1 ? typeUsers : ["Evaluado"],
         campus: campus,
         title: 'Agrega Usuarios',
         action: (UserRegisterRequest request1, PersonaModel request2) async {
@@ -142,7 +144,7 @@ class _PersonasState extends State<Personas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<PersonaModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -166,79 +168,39 @@ class _PersonasState extends State<Personas> {
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Usuarios",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
-                      InkWell(
-                              onTap: addMethod,
-                              child: Container(
-                                height: 40,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    color: Colors.blueAccent,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: const Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Icon(
-                                      Icons.add,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Agregar",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 15,
-                      ),
                       DropdownMenu<String>(
                         initialSelection: selectedType,
                         onSelected: (value) {
                           setState(() {
                             selectedType = value!;
-                            if(selectedType==type[0]){
+                            if (selectedType == type[0]) {
                               show = listaPersonas;
-                            }
-                            else{
+                            } else {
                               int typeInt = type.indexOf(selectedType);
-                              show = listaPersonas.where((element) => element.tipo == typeInt).toList();
+                              show = listaPersonas
+                                  .where((element) => element.tipo == typeInt)
+                                  .toList();
                             }
                           });
                         },
-                        dropdownMenuEntries: type
-                            .map<DropdownMenuEntry<String>>(
-                                (String value) {
-                              return DropdownMenuEntry<String>(
-                                  value: value, label: value);
-                            }).toList(),
+                        dropdownMenuEntries:
+                            type.map<DropdownMenuEntry<String>>((String value) {
+                          return DropdownMenuEntry<String>(
+                              value: value, label: value);
+                        }).toList(),
+                      ),
+                      const Spacer(),
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      AddButtonDesign(
+                        onTap: addMethod,
+                      ),
+                      const SizedBox(
+                        width: 15,
                       ),
                     ],
                   ),
@@ -272,7 +234,7 @@ class _PersonasState extends State<Personas> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -457,48 +419,47 @@ class _PersonasState extends State<Personas> {
                                         rows: List<DataRow>.generate(
                                           show.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
-                                              DataCell(Text(show[index]
-                                                  .nombre!)),
-                                              DataCell(Text(show[index]
-                                                  .apellido!)),
-                                              DataCell(Text(show[index]
-                                                  .fechaNaC!)),
-                                              DataCell(Text(show[index]
-                                                  .domicilio!)),
-                                              DataCell(Text(show[index]
-                                                  .telefono!)),
-                                              DataCell(Text(show[index]
-                                                  .correo!)),
-                                              DataCell(Text(show[index]
-                                                  .edoCivil!)),
-                                              DataCell(Text(show[index]
-                                                  .nacionalidad!)),
-                                              DataCell(Text(show[index]
-                                                          .estatus ==
-                                                      "1"
-                                                  ? "Activo"
-                                                  : "Inactivo")),
+                                              DataCell(
+                                                  Text(show[index].nombre!)),
+                                              DataCell(
+                                                  Text(show[index].apellido!)),
+                                              DataCell(
+                                                  Text(show[index].fechaNaC!)),
+                                              DataCell(
+                                                  Text(show[index].domicilio!)),
+                                              DataCell(
+                                                  Text(show[index].telefono!)),
+                                              DataCell(
+                                                  Text(show[index].correo!)),
+                                              DataCell(
+                                                  Text(show[index].edoCivil!)),
+                                              DataCell(Text(
+                                                  show[index].nacionalidad!)),
+                                              DataCell(Text(
+                                                  show[index].estatus == "1"
+                                                      ? "Activo"
+                                                      : "Inactivo")),
                                               DataCell(Text(campus
                                                   .firstWhere((element) =>
                                                       element.id ==
-                                                          show[index]
-                                                          .campusId!)
+                                                      show[index].campusId!)
                                                   .nombre!)),
                                               DataCell(Text(typeUsers[
-                                              show[index].tipo! -
-                                                      1])),
+                                                  show[index].tipo! - 1])),
                                               DataCell(InkWell(
-                                                onTap: () => editMethod(
-                                                    show[index]),
+                                                onTap: () =>
+                                                    editMethod(show[index]),
                                                 child: Icon(
                                                   Icons.edit,
                                                   color: Colors.green,
                                                 ),
                                               )),
                                               DataCell(InkWell(
-                                                onTap: () => deleteMethod(
-                                                    show[index]),
+                                                onTap: () =>
+                                                    deleteMethod(show[index]),
                                                 child: Icon(
                                                   Icons.delete_outline,
                                                   color: Colors.red,

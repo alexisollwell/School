@@ -8,7 +8,9 @@ import 'package:school/services/solicitudesServices.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV10.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../components/resultTestModal.dart';
 import '../../../../models/SolicitudesModel.dart';
 import '../../../../services/carreraServices.dart';
@@ -149,7 +151,7 @@ class _SolicitudesListadoState extends State<SolicitudesListado> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<SolicitudesModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -169,54 +171,16 @@ class _SolicitudesListadoState extends State<SolicitudesListado> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
-                      SizedBox(
-                        width: 200,
-                        child: CupertinoTextField(
-                          controller: controllerName,
-                          placeholder: "Busca por Nombre",
-                          placeholderStyle: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          textAlignVertical: TextAlignVertical.top,
-                          onSubmitted: search,
-                        ),
-                      ),
-                      const Spacer(),
-                      InkWell(
+                      AddButtonDesign(
                         onTap: addMethod,
-                        child: Container(
-                          height: 40,
-                          width: 120,
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.add,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Agregar",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                       const SizedBox(
                         width: 15,
@@ -253,7 +217,7 @@ class _SolicitudesListadoState extends State<SolicitudesListado> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -348,6 +312,8 @@ class _SolicitudesListadoState extends State<SolicitudesListado> {
                                         rows: List<DataRow>.generate(
                                           show.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(show[index]
                                                   .fechaAplicacion!)),

@@ -10,7 +10,9 @@ import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV1.dart';
 import '../../../../components/addDialogV2.dart';
 import '../../../../components/addDialogV3.dart';
+import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
+import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/CarreraModel.dart';
 import '../../../../models/DivisionesModel.dart';
@@ -151,7 +153,7 @@ class _CarrerasState extends State<Carreras> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<CarreraModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -171,50 +173,17 @@ class _CarrerasState extends State<Carreras> {
                     height: 15,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
+                      RefreshButtonDesign(
+                        onTap: refreshData,
+                      ),
                       const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Carreras",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
                       userType == 1
-                          ? InkWell(
+                          ? AddButtonDesign(
                               onTap: addMethod,
-                              child: Container(
-                                height: 40,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    color: Colors.blueAccent,
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: const Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Icon(
-                                      Icons.add,
-                                      size: 30,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Agregar",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                  ],
-                                ),
-                              ),
                             )
                           : const SizedBox(
                               width: 1,
@@ -251,7 +220,7 @@ class _CarrerasState extends State<Carreras> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -360,6 +329,8 @@ class _CarrerasState extends State<Carreras> {
                                         rows: List<DataRow>.generate(
                                           listaCarrera.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(
                                                   listaCarrera[index].nombre!)),

@@ -124,12 +124,10 @@ class _PruebasState extends State<Pruebas> {
   final horizontalController = ScrollController();
   final verticalController = ScrollController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<PruebasModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -147,56 +145,6 @@ class _PruebasState extends State<Pruebas> {
                 children: [
                   const SizedBox(
                     height: 15,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Text(
-                        "Pruebas",
-                        style: TextStyle(
-                            color: orange2,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
-                      /*InkWell(
-                        onTap: addMethod,
-                        child: Container(
-                          height: 40,
-                          width: 120,
-                          decoration: BoxDecoration(
-                              color: Colors.blueAccent,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.add,
-                                size: 30,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Agregar",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),*/
-                      const SizedBox(
-                        width: 15,
-                      ),
-                    ],
                   ),
                   Expanded(
                     child: Padding(
@@ -227,7 +175,7 @@ class _PruebasState extends State<Pruebas> {
                                             color: Colors.white),
                                         headingRowColor:
                                             MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
@@ -297,6 +245,8 @@ class _PruebasState extends State<Pruebas> {
                                         rows: List<DataRow>.generate(
                                           listaPruebas.length,
                                           (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(
                                                   listaPruebas[index].nombre!)),

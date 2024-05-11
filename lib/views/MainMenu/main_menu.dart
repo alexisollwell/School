@@ -243,7 +243,7 @@ class _MainMenuState extends State<MainMenu> {
                       label: 'Cerrar sesión',
                       onTap: closeSession),
                   theme: SideNavigationBarTheme(
-                    backgroundColor: orange3,
+                    backgroundColor: Colors.white,
                     togglerTheme: SideNavigationBarTogglerTheme.standard(),
                     itemTheme: SideNavigationBarItemTheme.standard(),
                     dividerTheme: SideNavigationBarDividerTheme.standard(),
@@ -261,7 +261,7 @@ class _MainMenuState extends State<MainMenu> {
               width: double.infinity,
               height: 70,
               decoration: BoxDecoration(
-                color: orange1,
+                color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.2),
@@ -280,7 +280,7 @@ class _MainMenuState extends State<MainMenu> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 15, vertical: 15),
                     child: Image.asset(
-                      "assets/images/xochicalco.png",
+                      "assets/images/xo.png",
                       fit: BoxFit.fitWidth,
                       width: 130,
                     ),
@@ -293,13 +293,26 @@ class _MainMenuState extends State<MainMenu> {
                     child: const Icon(
                       Icons.menu,
                       size: 30,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
-                  const SizedBox(
-                    width: 30,
+                  const Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        loginPerson.nombre!,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(loginPerson.correo!,
+                          style: const TextStyle(
+                              color: Colors.orange, fontSize: 14)),
+                    ],
                   ),
-                  userType == 3
+                  /*userType == 3
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -333,7 +346,7 @@ class _MainMenuState extends State<MainMenu> {
                       : const SizedBox(
                           width: 1,
                         ),
-                  const Spacer(),
+                  */
                   const SizedBox(
                     width: 15,
                   ),

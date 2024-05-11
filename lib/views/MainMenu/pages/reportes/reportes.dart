@@ -67,7 +67,7 @@ class _ReportesState extends State<Reportes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[200],
         body: FutureBuilder<List<SolicitudesModel>>(
           future: dataFuture,
           builder: (BuildContext context,
@@ -102,20 +102,20 @@ class _ReportesState extends State<Reportes> {
                                   scrollDirection: Axis.horizontal,
                                   child: Container(
                                       padding:
-                                      const EdgeInsets.only(bottom: 20),
+                                          const EdgeInsets.only(bottom: 20),
                                       child: DataTable(
                                         sortColumnIndex: _sortColumnIndex,
                                         sortAscending: _sortAscending,
                                         headingTextStyle: const TextStyle(
                                             color: Colors.white),
                                         headingRowColor:
-                                        MaterialStateColor.resolveWith(
-                                                (states) => orange4),
+                                            MaterialStateColor.resolveWith(
+                                                (states) => Colors.grey),
                                         columns: [
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Fecha Aplicacion',
                                                   style: TextStyle(
@@ -125,7 +125,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Estatus',
                                                   style: TextStyle(
@@ -135,7 +135,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Comentarios',
                                                   style: TextStyle(
@@ -145,7 +145,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Carrera',
                                                   style: TextStyle(
@@ -155,7 +155,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Periodo',
                                                   style: TextStyle(
@@ -165,7 +165,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Asignado',
                                                   style: TextStyle(
@@ -175,7 +175,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Resultados',
                                                   style: TextStyle(
@@ -185,7 +185,7 @@ class _ReportesState extends State<Reportes> {
                                           DataColumn(
                                             label: SizedBox(
                                               width: MediaQuery.sizeOf(context)
-                                                  .width *
+                                                      .width *
                                                   0.1,
                                               child: Text('Fecha Analisis',
                                                   style: TextStyle(
@@ -195,45 +195,47 @@ class _ReportesState extends State<Reportes> {
                                         ],
                                         rows: List<DataRow>.generate(
                                           _listaSolicitudes.length,
-                                              (index) => DataRow(
+                                          (index) => DataRow(
+                                            color: MaterialStateProperty.all<
+                                                Color>(Colors.white),
                                             cells: [
                                               DataCell(Text(
                                                   _listaSolicitudes[index]
                                                       .fechaAplicacion!)),
                                               DataCell(Text(statusTest[
-                                              int.parse(_listaSolicitudes[
-                                              index]
-                                                  .estatus!) -
-                                                  1])),
+                                                  int.parse(_listaSolicitudes[
+                                                              index]
+                                                          .estatus!) -
+                                                      1])),
                                               DataCell(Text(
                                                   _listaSolicitudes[index]
-                                                      .comentarios ??
+                                                          .comentarios ??
                                                       "")),
                                               DataCell(Text(listaCarrera
                                                   .firstWhere((element) =>
-                                              element.id ==
-                                                  _listaSolicitudes[index]
-                                                      .carreraId!)
+                                                      element.id ==
+                                                      _listaSolicitudes[index]
+                                                          .carreraId!)
                                                   .nombre!)),
                                               DataCell(Text(listaPeriodos
                                                   .firstWhere((element) =>
-                                              element.id ==
-                                                  _listaSolicitudes[index]
-                                                      .periodoId!)
+                                                      element.id ==
+                                                      _listaSolicitudes[index]
+                                                          .periodoId!)
                                                   .nombre!)),
                                               DataCell(Text(listaPersonas
                                                   .firstWhere((element) =>
-                                              element.id ==
-                                                  _listaSolicitudes[index]
-                                                      .personaId!)
+                                                      element.id ==
+                                                      _listaSolicitudes[index]
+                                                          .personaId!)
                                                   .nombre!)),
                                               DataCell(Text(
                                                   _listaSolicitudes[index]
-                                                      .Resultados ??
+                                                          .Resultados ??
                                                       "")),
                                               DataCell(Text(
                                                   _listaSolicitudes[index]
-                                                      .Fecha_analisis ??
+                                                          .Fecha_analisis ??
                                                       "")),
                                             ],
                                           ),
