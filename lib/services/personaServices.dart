@@ -19,8 +19,10 @@ Future<UserCredentialsResponse> loginService({
         HttpHeaders.contentTypeHeader: "application/json",
       },
     );
+    print(response.body);
     if (response.statusCode == 200) {
       var parsed = json.decode(response.body);
+
       UserCredentialsResponse resp = UserCredentialsResponse.fromJson(parsed);
       token = resp.token!;
       loginPerson = await consultPersonByIdUser(id: resp.idUsuario!);

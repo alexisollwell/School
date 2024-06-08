@@ -1,16 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:school/services/pruebasServices.dart';
-
-import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV6.dart';
 import '../../../../components/decisionDialogAlert.dart';
 import '../../../../constants.dart';
 import '../../../../models/PruebasModel.dart';
-import '../campus/campus.dart';
 
 class Pruebas extends StatefulWidget {
   const Pruebas({super.key});

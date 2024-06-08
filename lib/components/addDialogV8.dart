@@ -6,17 +6,19 @@ import 'package:school/models/user/updatePassword.dart';
 import '../constants.dart';
 import '../models/CampusModel.dart';
 import '../models/user/PersonaModel.dart';
-import '../models/user/UserRegisterRequest.dart';
+import 'CloseDialogButton.dart';
 import 'OkDialogAlert.dart';
+import 'accept_button_design.dart';
+import 'cancel_button_design.dart';
 
-Future<void> addDialogV8(
-    {required String title,
-      required PersonaModel data,
-    required List<CampusModel> campus,
-    required BuildContext context,
-    void Function(PersonaModel, UpdatePassword)? action,
-    }) async {
-  double height = 480;
+Future<void> addDialogV8({
+  required String title,
+  required PersonaModel data,
+  required List<CampusModel> campus,
+  required BuildContext context,
+  void Function(PersonaModel, UpdatePassword)? action,
+}) async {
+  double height = 500;
   double width = 450;
   double borderBox = 20;
 
@@ -34,33 +36,33 @@ Future<void> addDialogV8(
   controllerTelefono.text = data.telefono ?? "";
   controllerCorreo.text = data.correo ?? "";
 
-  DateTime saveFecNac = data.fechaNaC == null ? DateTime.now() : DateTime.parse(
-      data.fechaNaC!);
-  String fechaNac = "Fecha Nacimiento: ${DateFormat('yyyy-MM-dd').format(
-      saveFecNac)}";
+  DateTime saveFecNac =
+      data.fechaNaC == null ? DateTime.now() : DateTime.parse(data.fechaNaC!);
+  String fechaNac =
+      "Fecha Nacimiento: ${DateFormat('yyyy-MM-dd').format(saveFecNac)}";
 
   String edoCi = "";
-  for(String item in edoCivil){
-    if(item.toLowerCase()==data.edoCivil!.toLowerCase()){
+  for (String item in edoCivil) {
+    if (item.toLowerCase() == data.edoCivil!.toLowerCase()) {
       edoCi = item;
     }
   }
-  if(edoCi.isEmpty){
+  if (edoCi.isEmpty) {
     edoCi = edoCivil[0];
   }
 
   String nacionalidad = "";
-  for(String item in nationality){
-    if(item.toLowerCase()==data.nacionalidad!.toLowerCase()){
+  for (String item in nationality) {
+    if (item.toLowerCase() == data.nacionalidad!.toLowerCase()) {
       nacionalidad = item;
     }
   }
-  if(nacionalidad.isEmpty){
+  if (nacionalidad.isEmpty) {
     nacionalidad = nationality.first;
   }
 
-  CampusModel selectedCampus = campus.firstWhere((element) => element.id == data.campusId);
-
+  CampusModel selectedCampus =
+      campus.firstWhere((element) => element.id == data.campusId);
 
   bool status = true;
   final MaterialStateProperty<Color?> trackColor =
@@ -119,66 +121,18 @@ Future<void> addDialogV8(
                         borderRadius: BorderRadius.circular(borderBox)),
                     child: Column(
                       children: [
-                        Container(
-                          height: 70,
-                          width: width,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade700,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20))),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: const SizedBox(
-                                  height: 60,
-                                  width: 100,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Regresar",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Image.asset(
-                                "assets/images/xochicalco.png",
-                                fit: BoxFit.fitHeight,
-                                height: 30,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                            ],
-                          ),
-                        ),
+                        CloseDialogButton(width: width),
                         const Spacer(),
                         Text(
                           title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.blue[800]),
+                              fontSize: 30,
+                              color: Colors.black),
                         ),
-                        const Spacer(),
+                        const Spacer(
+                          flex: 2,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 5),
@@ -195,7 +149,9 @@ Future<void> addDialogV8(
                                   textAlignVertical: TextAlignVertical.top,
                                 ),
                               ),
-                              const SizedBox(width: 10,),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               SizedBox(
                                 width: 200,
                                 child: CupertinoTextField(
@@ -226,7 +182,9 @@ Future<void> addDialogV8(
                                   textAlignVertical: TextAlignVertical.top,
                                 ),
                               ),
-                              const SizedBox(width: 10,),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               SizedBox(
                                 width: 200,
                                 child: CupertinoTextField(
@@ -274,12 +232,12 @@ Future<void> addDialogV8(
                                 });
                               },
                               items: edoCivil.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                             ),
                             const SizedBox(
                               width: 15,
@@ -300,12 +258,12 @@ Future<void> addDialogV8(
                                 });
                               },
                               items: nationality.map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                             ),
                           ],
                         ),
@@ -326,25 +284,25 @@ Future<void> addDialogV8(
                               onChanged: (String? value) {
                                 // This is called when the user selects an item.
                                 stst(() {
-                                  selectedCampus = campus.firstWhere((element) =>
-                                  element.nombre == value!);
+                                  selectedCampus = campus.firstWhere(
+                                      (element) => element.nombre == value!);
                                 });
                               },
                               items: campus.map<DropdownMenuItem<String>>(
-                                      (CampusModel value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value.nombre,
-                                      child: Text(value.nombre!),
-                                    );
-                                  }).toList(),
+                                  (CampusModel value) {
+                                return DropdownMenuItem<String>(
+                                  value: value.nombre,
+                                  child: Text(value.nombre!),
+                                );
+                              }).toList(),
                             ),
                             const SizedBox(
                               width: 20,
                             ),
                             const Text(
                               "Estatus",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 15),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
                             ),
                             const SizedBox(
                               width: 15,
@@ -353,8 +311,7 @@ Future<void> addDialogV8(
                               value: status,
                               overlayColor: overlayColor,
                               trackColor: trackColor,
-                              thumbColor:
-                              const MaterialStatePropertyAll<Color>(
+                              thumbColor: const MaterialStatePropertyAll<Color>(
                                   Colors.black),
                               onChanged: (bool value) {
                                 stst(() {
@@ -372,13 +329,14 @@ Future<void> addDialogV8(
                             InkWell(
                               onTap: () {
                                 showDatePicker(
-                                    context: ctx,
-                                    initialDate: saveFecNac,
-                                    firstDate: DateTime.now()
-                                        .add(const Duration(days: -1*(350*100))),
-                                    lastDate: DateTime.now().add(const Duration(
-                                        days:
-                                        365))) //what will be the up to supported date in picker
+                                        context: ctx,
+                                        initialDate: saveFecNac,
+                                        firstDate: DateTime.now().add(
+                                            const Duration(
+                                                days: -1 * (350 * 100))),
+                                        lastDate: DateTime.now().add(const Duration(
+                                            days:
+                                                365))) //what will be the up to supported date in picker
                                     .then((pickedDate) {
                                   //then usually do the future job
                                   if (pickedDate == null) {
@@ -388,7 +346,7 @@ Future<void> addDialogV8(
                                   stst(() {
                                     saveFecNac = pickedDate;
                                     fechaNac =
-                                    "Fecha Nacimiento: ${DateFormat('yyyy-MM-dd').format(pickedDate)}";
+                                        "Fecha Nacimiento: ${DateFormat('yyyy-MM-dd').format(pickedDate)}";
                                   });
                                 });
                               },
@@ -444,55 +402,71 @@ Future<void> addDialogV8(
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            InkWell(
+                            CancelButtonDesign(
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Cancelar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
-                            InkWell(
+                            AcceptButtonDesign(
                               onTap: () {
-                                if(controllerName.text.isEmpty){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar un nombre", context: ctx);
+                                if (controllerName.text.isEmpty) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar un nombre",
+                                      context: ctx);
                                   return;
                                 }
-                                if(controllerName.text.length>50){
-                                  showOkAlert(title: "Atención", message: "El nombre ingresado debe ser menor a 50 caracteres", context: ctx);
+                                if (controllerName.text.length > 50) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "El nombre ingresado debe ser menor a 50 caracteres",
+                                      context: ctx);
                                   return;
                                 }
-                                if(controllerApellido.text.isEmpty){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar un apellido", context: ctx);
+                                if (controllerApellido.text.isEmpty) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar un apellido",
+                                      context: ctx);
                                   return;
                                 }
-                                if(controllerName.text.length>50){
-                                  showOkAlert(title: "Atención", message: "El apellido ingresado debe ser menor a 50 caracteres", context: ctx);
+                                if (controllerName.text.length > 50) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "El apellido ingresado debe ser menor a 50 caracteres",
+                                      context: ctx);
                                   return;
                                 }
-                                if(controllerPassword.text.isNotEmpty || controllerPassword2.text.isNotEmpty){
-                                  if(controllerPassword.text.length<6){
-                                    showOkAlert(title: "Atención", message: "Es necesario ingresar una contraseña contraseña mayor a 6 caracteres", context: ctx);
+                                if (controllerPassword.text.isNotEmpty ||
+                                    controllerPassword2.text.isNotEmpty) {
+                                  if (controllerPassword.text.length < 6) {
+                                    showOkAlert(
+                                        title: "Atención",
+                                        message:
+                                            "Es necesario ingresar una contraseña contraseña mayor a 6 caracteres",
+                                        context: ctx);
                                     return;
                                   }
-                                  if(controllerPassword.text != controllerPassword2.text){
-                                    showOkAlert(title: "Atención", message: "Es necesario que la contraseña y su confirmación coincidan", context: ctx);
+                                  if (controllerPassword.text !=
+                                      controllerPassword2.text) {
+                                    showOkAlert(
+                                        title: "Atención",
+                                        message:
+                                            "Es necesario que la contraseña y su confirmación coincidan",
+                                        context: ctx);
                                     return;
                                   }
                                 }
-                                if(controllerCorreo.text.isEmpty){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar un correo", context: ctx);
+                                if (controllerCorreo.text.isEmpty) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar un correo",
+                                      context: ctx);
                                   return;
                                 }
                                 RegExp emailRegex = RegExp(
@@ -500,43 +474,35 @@ Future<void> addDialogV8(
                                   caseSensitive: false,
                                   multiLine: false,
                                 );
-                                if(!emailRegex.hasMatch(controllerCorreo.text)){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar un correo válido", context: ctx);
+                                if (!emailRegex
+                                    .hasMatch(controllerCorreo.text)) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar un correo válido",
+                                      context: ctx);
                                   return;
                                 }
                                 action!(
-                                  PersonaModel(
-                                    id: data.id,
-                                    nombre: controllerName.text,
-                                    correo: controllerCorreo.text,
-                                    apellido: controllerApellido.text,
-                                    fechaNaC: DateFormat('yyyy-MM-dd').format(saveFecNac),
-                                    domicilio: controllerDomicilio.text,
-                                    telefono: controllerTelefono.text,
-                                    edoCivil: edoCi,
-                                    nacionalidad: nacionalidad,
-                                    estatus: status?"1":"0",
-                                    campusId: selectedCampus.id,
-                                    usuarioId: data.usuarioId,
-                                  ),
-                                  UpdatePassword(password: controllerPassword.text)
-                                );
+                                    PersonaModel(
+                                      id: data.id,
+                                      nombre: controllerName.text,
+                                      correo: controllerCorreo.text,
+                                      apellido: controllerApellido.text,
+                                      fechaNaC: DateFormat('yyyy-MM-dd')
+                                          .format(saveFecNac),
+                                      domicilio: controllerDomicilio.text,
+                                      telefono: controllerTelefono.text,
+                                      edoCivil: edoCi,
+                                      nacionalidad: nacionalidad,
+                                      estatus: status ? "1" : "0",
+                                      campusId: selectedCampus.id,
+                                      usuarioId: data.usuarioId,
+                                    ),
+                                    UpdatePassword(
+                                        password: controllerPassword.text));
                                 Navigator.of(context).pop();
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Aceptar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
                           ],
                         ),

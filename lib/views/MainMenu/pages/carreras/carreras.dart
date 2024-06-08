@@ -1,22 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:school/services/carreraServices.dart';
 import 'package:school/services/divisionesServices.dart';
-
-import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
-import '../../../../components/addDialogV1.dart';
-import '../../../../components/addDialogV2.dart';
 import '../../../../components/addDialogV3.dart';
 import '../../../../components/add_button_design.dart';
 import '../../../../components/decisionDialogAlert.dart';
 import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/CarreraModel.dart';
-import '../../../../models/DivisionesModel.dart';
-import '../campus/campus.dart';
 
 class Carreras extends StatefulWidget {
   const Carreras({super.key});

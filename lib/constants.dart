@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'models/CampusModel.dart';
 import 'models/CarreraModel.dart';
 import 'models/DivisionesModel.dart';

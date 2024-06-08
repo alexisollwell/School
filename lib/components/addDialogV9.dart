@@ -1,19 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../constants.dart';
-import '../models/CampusModel.dart';
 import '../models/PruebasModel.dart';
-import '../models/PruebasPerfil.dart';
-import '../models/user/PersonaModel.dart';
+import 'CloseDialogButton.dart';
+import 'accept_button_design.dart';
+import 'cancel_button_design.dart';
 
-Future<void> addDialogV9(
-    {required String title,
-    required List<PruebasModel> tests,
-    required BuildContext context,
-    void Function(PruebasModel)? action,
-    }) async {
-  double height = 400;
+Future<void> addDialogV9({
+  required String title,
+  required List<PruebasModel> tests,
+  required BuildContext context,
+  void Function(PruebasModel)? action,
+}) async {
+  double height = 420;
   double width = 450;
   double borderBox = 20;
 
@@ -53,67 +50,18 @@ Future<void> addDialogV9(
                         borderRadius: BorderRadius.circular(borderBox)),
                     child: Column(
                       children: [
-                        Container(
-                          height: 70,
-                          width: width,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade700,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20))),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: const SizedBox(
-                                  height: 60,
-                                  width: 100,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Regresar",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Image.asset(
-                                "assets/images/xochicalco.png",
-                                fit: BoxFit.fitHeight,
-                                height: 30,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                            ],
-                          ),
-                        ),
+                        CloseDialogButton(width: width),
                         const Spacer(),
                         Text(
                           title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.blue[800]),
+                              fontSize: 30,
+                              color: Colors.black),
                         ),
-                        const Spacer(),
-
+                        const Spacer(
+                          flex: 2,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -129,17 +77,17 @@ Future<void> addDialogV9(
                               onChanged: (String? value) {
                                 // This is called when the user selects an item.
                                 stst(() {
-                                  selectedTest = tests.firstWhere((element) =>
-                                  element.nombre == value!);
+                                  selectedTest = tests.firstWhere(
+                                      (element) => element.nombre == value!);
                                 });
                               },
                               items: tests.map<DropdownMenuItem<String>>(
-                                      (PruebasModel value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value.nombre,
-                                      child: Text(value.nombre!),
-                                    );
-                                  }).toList(),
+                                  (PruebasModel value) {
+                                return DropdownMenuItem<String>(
+                                  value: value.nombre,
+                                  child: Text(value.nombre!),
+                                );
+                              }).toList(),
                             )
                           ],
                         ),
@@ -149,46 +97,16 @@ Future<void> addDialogV9(
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            InkWell(
+                            CancelButtonDesign(
                               onTap: () {
                                 Navigator.of(context).pop();
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Cancelar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
-                            InkWell(
+                            AcceptButtonDesign(
                               onTap: () {
-                                action!(
-                                  selectedTest
-                                );
+                                action!(selectedTest);
                                 Navigator.of(context).pop();
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Aceptar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
                           ],
                         ),

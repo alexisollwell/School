@@ -3,13 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:school/components/LoadingAlert.dart';
 import 'package:school/services/perfilServices.dart';
 import 'package:school/services/solicitudesServices.dart';
-
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV7.dart';
 import '../../../../components/profileModal.dart';
 import '../../../../constants.dart';
-import '../../../../models/CampusModel.dart';
 import '../../../../models/CarreraModel.dart';
 import '../../../../models/PerfilModel.dart';
 import '../../../../models/PeriodoModel.dart';
@@ -306,9 +304,9 @@ class _SolicitudesState extends State<Solicitudes> {
                             );
                             if (pickedTime != null) {
                               pickedDate = DateTime(
-                                pickedDate!.year,
-                                pickedDate!.month,
-                                pickedDate!.day,
+                                pickedDate.year,
+                                pickedDate.month,
+                                pickedDate.day,
                                 pickedTime.hour,
                                 pickedTime.minute,
                               );

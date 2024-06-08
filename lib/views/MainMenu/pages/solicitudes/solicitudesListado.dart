@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/constants.dart';
-import 'package:school/models/user/PersonaModel.dart';
 import 'package:school/services/personaServices.dart';
 import 'package:school/services/solicitudesServices.dart';
-
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV10.dart';

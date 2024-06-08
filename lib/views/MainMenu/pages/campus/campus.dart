@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/constants.dart';
-
-import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV1.dart';

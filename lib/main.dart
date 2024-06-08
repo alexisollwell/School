@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school/views/MainMenu/main_menu.dart';
 import 'package:school/views/access/load/load.dart';
 
 void main() {

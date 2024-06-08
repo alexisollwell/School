@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/services/periodoServices.dart';
-
-import '../../../../components/LoadingAlert.dart';
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV4.dart';
@@ -11,7 +8,6 @@ import '../../../../components/decisionDialogAlert.dart';
 import '../../../../components/refresh_button_design.dart';
 import '../../../../constants.dart';
 import '../../../../models/PeriodoModel.dart';
-import '../campus/campus.dart';
 
 class Periodos extends StatefulWidget {
   const Periodos({super.key});

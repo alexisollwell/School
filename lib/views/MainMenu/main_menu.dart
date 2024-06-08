@@ -10,11 +10,8 @@ import 'package:school/views/MainMenu/pages/personas/personas.dart';
 import 'package:school/views/MainMenu/pages/pruebas/pruebas.dart';
 import 'package:school/views/MainMenu/pages/reportes/reportes.dart';
 import 'package:school/views/MainMenu/pages/solicitudes/SolicitudesMenu.dart';
-import 'package:school/views/MainMenu/pages/solicitudes/solicitudes.dart';
 import 'package:school/views/MainMenu/pages/userTest/userPendingtest.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../components/addDialogV1.dart';
 import '../../components/decisionDialogAlert.dart';
 import '../../custom_libraries/SideNavigation/src/api/side_navigation_bar.dart';
 import '../../custom_libraries/SideNavigation/src/api/side_navigation_bar_header.dart';

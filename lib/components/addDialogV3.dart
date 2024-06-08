@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/models/DivisionesModel.dart';
 import '../models/CarreraModel.dart';
+import 'CloseDialogButton.dart';
 import 'OkDialogAlert.dart';
+import 'accept_button_design.dart';
+import 'cancel_button_design.dart';
 
 Future<void> addDialogV3(
     {required String title,
@@ -83,66 +86,18 @@ Future<void> addDialogV3(
                         borderRadius: BorderRadius.circular(borderBox)),
                     child: Column(
                       children: [
-                        Container(
-                          height: 70,
-                          width: width,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade700,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20))),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: const SizedBox(
-                                  height: 60,
-                                  width: 100,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Regresar",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const Spacer(),
-                              Image.asset(
-                                "assets/images/xochicalco.png",
-                                fit: BoxFit.fitHeight,
-                                height: 30,
-                              ),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                            ],
-                          ),
-                        ),
+                        CloseDialogButton(width: width),
                         const Spacer(),
                         Text(
                           title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.blue[800]),
+                              fontSize: 30,
+                              color: Colors.black),
                         ),
-                        const Spacer(),
+                        const Spacer(
+                          flex: 2,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 5),
@@ -289,40 +244,39 @@ Future<void> addDialogV3(
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            InkWell(
+                            CancelButtonDesign(
                               onTap: () {
                                 Navigator.of(context).pop();
                                 if (actionCancel != null) {
                                   actionCancel();
                                 }
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Cancelar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
-                            InkWell(
+                            AcceptButtonDesign(
                               onTap: () {
-                                if(_textFieldController3.text.isEmpty){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar una clave", context: ctx);
+                                if (_textFieldController3.text.isEmpty) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar una clave",
+                                      context: ctx);
                                   return;
                                 }
-                                if(_textFieldController2.text.isEmpty){
-                                  showOkAlert(title: "Atención", message: "Es necesario ingresar un nombre", context: ctx);
+                                if (_textFieldController2.text.isEmpty) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "Es necesario ingresar un nombre",
+                                      context: ctx);
                                   return;
                                 }
-                                if(_textFieldController2.text.length>50 || _textFieldController3.text.length>50){
-                                  showOkAlert(title: "Atención", message: "El texto ingresado debe ser menor a 50 caracteres", context: ctx);
+                                if (_textFieldController2.text.length > 50 ||
+                                    _textFieldController3.text.length > 50) {
+                                  showOkAlert(
+                                      title: "Atención",
+                                      message:
+                                          "El texto ingresado debe ser menor a 50 caracteres",
+                                      context: ctx);
                                   return;
                                 }
                                 action!(CarreraModel(
@@ -336,20 +290,6 @@ Future<void> addDialogV3(
                                     id_division_fk: division.id));
                                 Navigator.of(context).pop();
                               },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: const Text(
-                                  "Aceptar",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Colors.white),
-                                ),
-                              ),
                             ),
                           ],
                         ),

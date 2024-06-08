@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:school/models/CampusModel.dart';
 import 'package:school/models/user/UserRegisterResponse.dart';
 import 'package:school/models/user/updatePassword.dart';
 import 'package:school/services/campusServices.dart';
 import 'package:school/services/personaServices.dart';
-
 import '../../../../components/LoaginPage.dart';
 import '../../../../components/OkDialogAlert.dart';
 import '../../../../components/addDialogV7.dart';

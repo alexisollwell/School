@@ -7,10 +7,9 @@ import '../constants.dart';
 Future<List<CampusModel>> consultAllCampus() async {
   final url = Uri.parse('${urlServer}api/v1/campus');
   try {
-    final response = await http.get(url, headers: {
+    final response = await http.get(url, 
+    headers: {
       HttpHeaders.authorizationHeader: "Bearer $token",
-      //HttpHeaders.contentTypeHeader: 'application/json',
-
     });
     final status = response.statusCode;
     if (status == 200) {

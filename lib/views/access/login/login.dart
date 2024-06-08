@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/components/LoadingAlert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../components/LoginTextField.dart';
 import '../../../components/OkDialogAlert.dart';
 import '../../../components/StyleButton.dart';
@@ -25,9 +23,9 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     user = TextEditingController();
-    user.text = "Leonel@test.com";
+    //user.text = "Leonel@test.com";
     password = TextEditingController();
-    password.text = "Carlosx94*";
+    //password.text = "Carlosx94*";
   }
 
   void makeLogin() async {
