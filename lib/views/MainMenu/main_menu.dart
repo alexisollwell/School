@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school/constants.dart';
 import 'package:school/views/MainMenu/pages/campus/campus.dart';
+import 'package:school/views/MainMenu/pages/carga%20masiva/cargamasiva.dart';
 import 'package:school/views/MainMenu/pages/carreras/carreras.dart';
 import 'package:school/views/MainMenu/pages/divisiones/divisiones.dart';
 import 'package:school/views/MainMenu/pages/perfil/perfil.dart';
@@ -78,6 +79,8 @@ class _MainMenuState extends State<MainMenu> {
           return const SolicitudesMenu();
         case 8:
           return const Reportes();
+        case 9:
+          return const CargaMasiva();
         default:
           return Container();
       }
@@ -141,6 +144,10 @@ class _MainMenuState extends State<MainMenu> {
         const SideNavigationBarItem(
           icon: Icons.feed,
           label: 'Reportes',
+        ),
+        const SideNavigationBarItem(
+          icon: Icons.feed,
+          label: 'Carga Masiva',
         )
       ];
     } else if (userType == 2 || userType == 4) {

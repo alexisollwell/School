@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AcceptButtonDesign extends StatelessWidget {
   final void Function() onTap;
-  const AcceptButtonDesign({super.key, required this.onTap});
+  final String? title;
+  const AcceptButtonDesign({super.key, required this.onTap, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +14,12 @@ class AcceptButtonDesign extends StatelessWidget {
         width: 120,
         decoration: BoxDecoration(
             color: Colors.orange, borderRadius: BorderRadius.circular(4)),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Aceptar",
-              style: TextStyle(color: Colors.white),
+              title??"Aceptar",
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),

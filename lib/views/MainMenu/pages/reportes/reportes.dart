@@ -192,6 +192,16 @@ class _ReportesState extends State<Reportes> {
                                                       color: Colors.white)),
                                             ),
                                           ),
+                                          DataColumn(
+                                            label: SizedBox(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  0.1,
+                                              child: Text('Excel',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                            ),
+                                          ),
                                         ],
                                         rows: List<DataRow>.generate(
                                           _listaSolicitudes.length,
@@ -236,7 +246,8 @@ class _ReportesState extends State<Reportes> {
                                               DataCell(Text(
                                                   _listaSolicitudes[index]
                                                           .Fecha_analisis ??
-                                                      "")),
+                                                      ""),),
+                                              DataCell(Icon(Icons.file_present_outlined))
                                             ],
                                           ),
                                         ),

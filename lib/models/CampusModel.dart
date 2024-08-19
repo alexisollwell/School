@@ -3,7 +3,11 @@ class CampusModel {
   final String? nombre;
   final String? estatus;
 
-  CampusModel({this.nombre, this.estatus, required this.id});
+  CampusModel({
+    this.nombre, 
+    this.estatus, 
+    required this.id
+  });
 
   factory CampusModel.fromJson(Map<String, dynamic> json) {
     return CampusModel(
@@ -12,8 +16,7 @@ class CampusModel {
       id: int.parse(json['id'].toString()),
     );
   }
-
-  // Método para serializar el objeto MiModelo a JSON
+  
   Map<String, dynamic> toJson() {
     return {
       'Nombre': nombre,

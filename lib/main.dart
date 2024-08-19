@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:school/views/access/load/load.dart';
 
+import 'views/MainMenu/pages/carga masiva/cargamasiva.dart';
+
 void main() {
   runApp(const MyApp());
 }
